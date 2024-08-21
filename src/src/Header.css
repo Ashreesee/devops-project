@@ -1,0 +1,235 @@
+/* Light Mode (default) */
+:root {
+  --background-color: #fff;
+  --text-color: #000;
+  --navbar-background-color: #333;
+  --navbar-text-color: #fff;
+  --hover-color: #ff6600;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  --background-color: #121212;
+  --text-color: #ffffff;
+  --navbar-background-color: #222;
+  --navbar-text-color: #ffffff;
+  --hover-color: #ff9933;
+}
+
+/* General body styles */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header styles */
+.header {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--navbar-background-color);
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+/* Logo Container */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adds space between logo and toggle switch */
+}
+
+.logo-img {
+  height: 40px;
+}
+
+.logo {
+  color: var(--navbar-text-color);
+  font-size: 24px;
+}
+
+/* Navigation and Toggle Container */
+.nav-and-toggle {
+  display: flex;
+  align-items: center;
+}
+
+/* Theme Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 20px;
+  margin-right: 20px; /* Adds margin to the right of the switch */
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(14px);
+}
+
+/* Hamburger and Close Icons */
+.menu-toggle {
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--navbar-text-color);
+  background: none;
+  border: none;
+  outline: none;
+  z-index: 1001; /* Ensure it's on top of the sidebar */
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Aligns items to the left and right */
+  align-items: center; /* Vertically centers items */
+  background-color: transparent; /* Transparent background for navbar */
+}
+
+/* Navbar links */
+.navbar a {
+  color: var(--navbar-text-color);
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Navbar link on the right */
+.navbar .nav-right {
+  margin-left: auto; /* Pushes the item to the right */
+}
+
+/* Hover effect for links */
+.navbar a:hover {
+  color: var(--hover-color); /* Change color on hover */
+  transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+/* Sidebar and Hamburger visibility */
+@media (max-width: 768px) {
+  .menu-toggle {
+      display: block; /* Show hamburger on small screens */
+  }
+
+  .navbar {
+      display: none; /* Hide default navbar on small screens */
+  }
+
+  .navbar.open {
+      display: flex;
+      position: fixed;
+      top: 60px;
+      right: 0;
+      width: 250px;
+      height: 90%;
+      background-color: rgba(51, 51, 51, 0.9);
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      transform: translateX(0);
+      transition: transform 0.3s ease;
+  }
+}
+
+/* Hide hamburger on larger screens */
+@media (min-width: 769px) {
+  .menu-toggle {
+      display: none; /* Hide hamburger on large screens */
+  }
+
+  .navbar {
+      display: flex; /* Show navbar normally on large screens */
+  }
+}
+@media (max-width: 320px) {
+  .header {
+    padding: 5px 10px;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  .navbar {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: var(--navbar-background-color);
+    width: 100%;
+    padding: 10px;
+    z-index: 1000;
+  }
+
+  .navbar a {
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .close-icon {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+  }
+
+  .navbar.active {
+    display: flex;
+  }
+}
+
+/* Remove default margin/padding to eliminate gaps */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
